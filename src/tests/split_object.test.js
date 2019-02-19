@@ -4,9 +4,12 @@ const testData = [
   [{ a: 1, b: 2, c: 3, d: 4 }, [null], [{ a: 1, b: 2, c: 3, d: 4 }]],
   [{ a: 1, b: 2, c: 3, d: 4 }, [], [{ a: 1, b: 2, c: 3, d: 4 }]],
   [{ a: 1, b: 2, c: 3, d: 4 }, [[]], [{}, { a: 1, b: 2, c: 3, d: 4 }]],
+  [{ a: 1, b: 2, c: 3, d: 4 }, [{}], [{}, { a: 1, b: 2, c: 3, d: 4 }]],
+  [{ a: 1, b: 2, c: 3, d: 4 }, ['cat', 'mouse'], [{}, {}, { a: 1, b: 2, c: 3, d: 4 }]],
   [{ a: 1, b: 2, c: 3, d: 4 }, [['u1', 'u2']], [{}, { a: 1, b: 2, c: 3, d: 4 }]],
   [{ a: 1, b: 2, c: 3, d: 4 }, [[], []], [{}, {}, { a: 1, b: 2, c: 3, d: 4 }]],
   [{ a: 1, b: 2, c: 3, d: 4 }, [['a'], ['c']], [{ a: 1 }, { c: 3 }, { b: 2, d: 4 }]],
+  [{ a: 1, b: 2, c: 3, d: 4 }, [{ a: true }, { c: false }], [{ a: 1 }, { c: 3 }, { b: 2, d: 4 }]],
   [{ a: 1, b: 2, c: 3, d: 4 }, [['a', 'aa'], ['c']], [{ a: 1 }, { c: 3 }, { b: 2, d: 4 }]],
   [{ a: 1, b: 2, c: 3, d: 4 }, [['a', 'b'], ['c']], [{ a: 1, b: 2 }, { c: 3 }, { d: 4 }]],
   [{ a: 1, b: 2, c: 3, d: 4 }, [['a', 'b'], ['c'], ['d']], [{ a: 1, b: 2 }, { c: 3 }, { d: 4 }, {}]],
@@ -24,7 +27,7 @@ describe('jsSplit for object', () => {
 
 describe('select for object', () => {
   test.each(testData)('select(%j, ...%j) = %j', (obj, parts, expected) => {
-    const result = select(obj, ...parts);
+    const result = select(obj, parts[0]);
     expect(result).toEqual(expected[0]);
   });
 });
