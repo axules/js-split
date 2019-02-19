@@ -18,8 +18,9 @@ describe('jsSplit for String', () => {
 });
 
 describe('select for String', () => {
-  test.each(testData)('select(%j, ...%j) = %j', (obj, parts, expected) => {
-    const result = select(obj, parts[0]);
-    expect(result).toEqual(expected[0]);
+  const selectTestData = testData.map(el => [el[0], el[1][0], el[2][0]]);
+  test.each(selectTestData)('select(%j, %j) = %j', (obj, part, expected) => {
+    const result = select(obj, part);
+    expect(result).toEqual(expected);
   });
 });
