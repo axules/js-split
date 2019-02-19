@@ -52,18 +52,18 @@ import jsSplit, { select } from 'js-split';
 
 ```javascript
 import jsSplit from 'js-split';
-
-const firstPart = jsSplit(...)[0];
-...
+// ...
+const firstPart = jsSplit(myObj, partKeys)[0];
+// ...
 ```
 
-OR by `select`
+OR the same result by `select`
 
 ```javascript
 import { select } from 'js-split';
-
-const firstPart = select(...);
-...
+// ...
+const firstPart = select(myObj, partKeys);
+// ...
 ```
 
 # Examples
