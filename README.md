@@ -2,12 +2,12 @@
 
 ## What is it?
 
-It is simple function which gets Object (or Array, or String) and returns parts of this.
+It is simple function that gets Object (or Array, or String) and returns parts of this.
 
 ## Installation
 
 ```
-npm install --save deep-mutation
+npm install --save js-split
 ```
 
 # How it works?
@@ -112,12 +112,14 @@ jsSplit([1,2,3,4], ['1', '3']);
 // = [[2,4],[1,3]]
 jsSplit([1,2,3,4], [1,3], [0]); 
 // = [[2,4],[1],[3]]
-jsSplit([1,2,3,4], [1,3], [0,1]); 
-// = [[2,4],[1,2],[3]]
 jsSplit([1,2,3,4], [1,3], [0], [99]); 
 // = [[2,4],[1],[],[3]]
 jsSplit([1,2,3,4], [1,3], [0], [2], [99]); 
 // = [[2,4],[1],[3],[],[]]
+
+// you can reuse indexes
+jsSplit([1,2,3,4], [1,3], [0,1]); 
+// = [[2,4],[1,2],[3]]
 ```
 
 ### `select` for Array
@@ -134,7 +136,7 @@ select([1,2,3,4], [1,3]);
 // = [2,4]
 ```
 
-### `jsSplit` for object
+### `jsSplit` for Object
 ```javascript
 import jsSplit from 'js-split';
 
@@ -146,13 +148,17 @@ jsSplit({a: 1, b: 2, c: 3, d: 4}, ['a'],['c']);
 // = [{a: 1},{c: 3},{b: 2, d: 4}]
 jsSplit({a: 1, b: 2, c: 3, d: 4}, {a: true},{c: false}); 
 // = [{a: 1},{c: 3},{b: 2, d: 4}]
+
+// undefined values can't be added to result
 jsSplit({a: 1, b: 2, c: 3, d: 4}, ['a', 'aa'],['c']); 
 // = [{a: 1},{c: 3},{b: 2, d: 4}]
+
+// you can reuse keys
 jsSplit({a: 1, b: 2, c: 3, d: 4}, ['a', 'b'],['b', 'c'],['c', 'd']); 
 // = [{a: 1, b: 2}, {b: 2, c: 3}, {c: 3, d: 4}, {}]
 ```
 
-### select for object
+### `select` for Object
 ```javascript
 import { select } from 'js-split';
 
