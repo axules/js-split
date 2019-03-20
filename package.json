@@ -16,15 +16,14 @@
   ],
   "main": "src/index.js",
   "deprecated": false,
-  "description": "The mutate method returns new object with changes",
+  "description": "It is simple function that gets Object (or Array, or String) and returns parts of this.",
   "keywords": [
-    "assign",
+    "split",
     "object",
-    "deep",
-    "state",
-    "mutable",
-    "redux",
-    "immutable"
+    "array",
+    "string",
+    "chunk",
+    "part"
   ],
   "license": "MIT",
   "repository": {
