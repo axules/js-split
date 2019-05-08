@@ -35,20 +35,43 @@ import jsSplit, { select } from 'js-split';
   // v2 = [{a: 1}, {c: 3}, {b: 2, d: 4}]
 ```
 
-### select(myObject: Object, partKeys: Array or Object): Object
+## Split Arrays
 
-`result` is Object that contains part of `myObject`
+### jsSplit(myArray: Array, partKeys1: Array, [partKeys2: Array, ...]): Array
+
+`result` is Array that contains all parts and rest of `myArray` (**[part1, part2, ..., rest]**)
 
 ```javascript
-  import { select } from 'js-split';
-  const v1 = select({a: 1, b: 2, c: 3, d: 4}, ['a', 'c']); 
-  // v1 = {a: 1, c: 3}
-  const v2 = select({a: 1, b: 2, c: 3, d: 4}, {a: true, c: -1});
-  // v2 = {a: 1, c: 3}
+  import jsSplit from 'js-split';
+  const v1 = jsSplit([1,2,3,4], [0,3], [1]); 
+  // v1 = [[1,4],[2],[3]]
 ```
 
-`select(...)` it is equal of `jsSplit(...)[0]` and added for extra situation when you need to get only first result.
+**or**
+### jsSplit(myArray: Object, partLength: Number): Array
+`result` is Array that contains all parts of `myArray`, each part is `partLength` size.
 
+```javascript
+  import jsSplit from 'js-split';
+  const v1 = jsSplit([1,2,3,4,5], 2); 
+  // v1 = [[1,2], [3,4], [5]]
+```
+
+## Split Strings
+
+### jsSplit(myText: String, partLength: Number): Array
+
+`result` is Array that contains all parts of `myText`, each part is `partLength` size.
+
+```javascript
+  import jsSplit from 'js-split';
+  const v1 = jsSplit('Hello, people!', 3); 
+  // v1 = ['Hel', 'lo,', ' pe', 'opl', 'e!']
+```
+
+## Additional function `Select`
+
+`select(...)` it is equal of `jsSplit(...)[0]` and it has been added for extra situation when you need to get only first result.
 
 ```javascript
 import jsSplit from 'js-split';
@@ -57,7 +80,7 @@ const firstPart = jsSplit(myObj, partKeys)[0];
 // ...
 ```
 
-OR the same result by `select`
+**OR** the same result by `select`
 
 ```javascript
 import { select } from 'js-split';
